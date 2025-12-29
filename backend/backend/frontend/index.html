@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Ear Canal Compare (Right vs Left)</title>
+  <link rel="stylesheet" href="styles.css"/>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- three.js + STLLoader -->
+  <script type="module">
+    import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+    import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+    import { STLLoader } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/STLLoader.js";
+    window.THREE = THREE;
+    window.OrbitControls = OrbitControls;
+    window.STLLoader = STLLoader;
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Ear Canal: Right vs Left</h1>
+    <p class="sub">Upload two meshes. Get volume, isthmus, error, plots, and 3D views.</p>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Upload</h2>
+      <div class="row">
+        <label>Right ear mesh</label>
+        <input id="fileRight" type="file" accept=".stl,.ply,.obj"/>
+      </div>
+      <div class="row">
+        <label>Left ear mesh</label>
+        <input id="fileLeft" type="file" accept=".stl,.ply,.obj"/>
+      </div>
+      <button id="analyzeBtn">Analyze</button>
+      <div id="status" class="status"></div>
+    </section>
+
+    <section class="card">
+      <h2>Results</h2>
+      <div class="tables">
+        <div>
+          <h3>Right</h3>
+          <table id="tableRight"></table>
+        </div>
+        <div>
+          <h3>Left</h3>
+          <table id="tableLeft"></table>
+        </div>
+      </div>
+      <h3>Comparison</h3>
+      <table id="tableCompare"></table>
+    </section>
+
+    <section class="card">
+      <h2>Isthmus position (normalized)</h2>
+      <canvas id="chartIsthmus" height="140"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>A(s) profile (normalized)</h2>
+      <canvas id="chartArea" height="180"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>3D view — Right</h2>
+      <div class="viewer" id="viewerRight"></div>
+    </section>
+
+    <section class="card">
+      <h2>3D view — Left</h2>
+      <div class="viewer" id="viewerLeft"></div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Backend endpoint: <code>http://localhost:8000/analyze</code></small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
