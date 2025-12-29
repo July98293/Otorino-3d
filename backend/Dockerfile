@@ -12,7 +12,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Expose the port that Flask will run on
-EXPOSE 8123
+EXPOSE 5000
 
 # Set the environment variable for Flask to run in production mode
 ENV FLASK_APP=app.py
