@@ -1,4 +1,4 @@
-const API = "http://localhost:8000/analyze";
+const API = "http://46.224.65.2:8123/analyze";
 
 const el = (id) => document.getElementById(id);
 const statusEl = el("status");
